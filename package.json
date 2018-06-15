@@ -1,6 +1,6 @@
 {
   "name": "typespring",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "description": "typespring",
   "main": "lib/index.js",
   "scripts": {
