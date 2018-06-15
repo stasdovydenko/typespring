@@ -14,6 +14,8 @@ export class Injector {
     }
 
     public static resolve<T>(target): T {
+        var t = Reflect.getMetadata("design:type", target);
+        console.log(t);
         const name = target.name;
         return Injector.instances.get(name);
     }
