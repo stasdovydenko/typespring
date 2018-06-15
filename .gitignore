@@ -3,7 +3,7 @@
 *.iws
 *.ipr
 .idea/
-
+.vscode
 # compiled output
 /dist
 /tmp
