@@ -1,6 +1,6 @@
 {
   "name": "typespring",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "typespring",
   "main": "index.js",
   "scripts": {
@@ -29,5 +29,5 @@
   "devDependencies": {
     "typescript": "^2.9.2"
   },
-  "typings": "typespring.d.ts"
+  "typings": "lib/index.d.ts"
 }
