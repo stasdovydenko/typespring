@@ -1,0 +1,89 @@
+{
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint:recommended"
+    ],
+    "jsRules": {},
+    "rules": {
+        "quotemark": [
+            true,
+            "single",
+            "avoid-escape"
+        ],
+        "ordered-imports": [
+            false,
+            {
+                "import-sources-order": "any",
+                "named-imports-order": "case-insensitive"
+            }
+        ],
+        "one-line": [
+            true,
+            "check-open-brace",
+            "check-whitespace"
+        ],
+        "member-access": [
+            true,
+            "no-public"
+        ],
+        "member-ordering": [
+            true,
+            "public-before-private",
+            "static-before-instance",
+            "variables-before-functions"
+        ],
+        "space-before-function-paren": [
+            false,
+            {
+                "anonymous": "never",
+                "named": "never",
+                "asyncArrow": "always",
+                "method": "never",
+                "constructor": "never"
+            }
+        ],
+        "object-literal-shorthand": false,
+        "object-literal-sort-keys": [
+            true,
+            "ignore-case",
+            "match-declaration-order",
+            "shorthand-first"
+        ],
+        "object-literal-key-quotes": [
+            true,
+            "as-needed"
+        ],
+        "curly": [
+            true,
+            "ignore-same-line"
+        ],
+        "newline-before-return": false,
+        "eofline": false,
+        "no-angle-bracket-type-assertion": false,
+        "whitespace": [
+            true,
+            "check-branch",
+            "check-decl",
+            "check-operator",
+            "check-module",
+            "check-separator",
+            "check-type"
+        ],
+        "variable-name": [
+            true,
+            "ban-keywords",
+            "check-format",
+            "allow-leading-underscore"
+        ],
+        "ban-types": [
+            false
+        ],
+        "max-classes-per-file": [
+            false
+        ],
+        "no-console": false,
+    },
+    "rulesDirectory": [
+        "node_modules/codelyzer"
+    ]
+}
