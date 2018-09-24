@@ -1,1 +1,1 @@
-export declare function DeleteMapping(url: string): (target: any, propertyKey: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
+export declare function DeleteRequest<T>(url: string, middleware?: Function[]): (target: any, propertyKey: string, descriptor: PropertyDescriptor) => PropertyDescriptor;

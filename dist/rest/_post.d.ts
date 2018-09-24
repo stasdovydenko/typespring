@@ -1,1 +1,1 @@
-export declare function PostMapping(url: string): (target: any, propertyKey: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
+export declare function PostRequest<T>(url: string, middleware?: Function[]): (target: any, propertyKey: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
