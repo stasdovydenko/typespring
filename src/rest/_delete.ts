@@ -1,20 +1,30 @@
 import * as express from 'express';
-import { wrap } from 'async-middleware';
+import { Request } from 'express';
+import { Response } from 'express';
+import { handleError } from '../core';
 
-export function DeleteMapping(url: string) {
-    if (!url) url = '/';
+export function DeleteRequest<T>(url: string, middleware: Function[] = []) {
     if (url.substring(0, 1) !== '/') url = `/${url}`;
-    return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+    return (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
         const initialValue = descriptor.value;
-        if (!target['__controllers']) {
-            target['__controllers'] = [];
+        if (!target['__requests']) {
+            target['__requests'] = [];
         }
-        target['__controllers'].push(propertyKey);
+        target['__requests'].push(propertyKey);
         descriptor.value = function () {
             const router = express.Router();
-            const middleware = arguments[0];
-            return router.delete(url, middleware || [], wrap(initialValue.bind(this)));
-        }
+            const groupMiddleware = arguments[0];
+            return router.delete(url, [...groupMiddleware, ...middleware], async (req: Request, res: Response) => {
+                try {
+                    const r: T = await initialValue.call(this, req, res);
+                    if (res.headersSent) return;
+                    res.send(r);
+                } catch (e) {
+                    if (res.headersSent) return;
+                    handleError(e, res);
+                }
+            });
+        };
         return descriptor;
     };
 }
