@@ -37,7 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
 var core_1 = require("../core");
-function PutRequest(url, middleware) {
+function PutRequest(url, middleware, disableResponse) {
     if (middleware === void 0) { middleware = []; }
     if (url.substring(0, 1) !== '/')
         url = "/" + url;
@@ -60,7 +60,7 @@ function PutRequest(url, middleware) {
                             return [4 /*yield*/, initialValue.call(this, req, res)];
                         case 1:
                             r = _a.sent();
-                            if (res.headersSent)
+                            if (res.headersSent || disableResponse)
                                 return [2 /*return*/];
                             res.send(r);
                             return [3 /*break*/, 3];

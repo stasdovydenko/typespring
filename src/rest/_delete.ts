@@ -3,7 +3,7 @@ import { Request } from 'express';
 import { Response } from 'express';
 import { handleError } from '../core';
 
-export function DeleteRequest<T>(url: string, middleware: Function[] = []) {
+export function DeleteRequest<T>(url: string, middleware: Function[] = [], disableResponse?: boolean) {
     if (url.substring(0, 1) !== '/') url = `/${url}`;
     return (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
         const initialValue = descriptor.value;
@@ -17,7 +17,7 @@ export function DeleteRequest<T>(url: string, middleware: Function[] = []) {
             return router.delete(url, [...groupMiddleware, ...middleware], async (req: Request, res: Response) => {
                 try {
                     const r: T = await initialValue.call(this, req, res);
-                    if (res.headersSent) return;
+                    if (res.headersSent || disableResponse) return;
                     res.send(r);
                 } catch (e) {
                     if (res.headersSent) return;
