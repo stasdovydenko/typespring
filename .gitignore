@@ -5,7 +5,6 @@
 .idea/
 .vscode
 # compiled output
-/dist
 /tmp
 /uploads
 /out-tsc

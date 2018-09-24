@@ -1,3 +1,2 @@
-export * from './autowired';
-export * from './router';
-export * from './service';
+export * from './_bootstrap';
+export * from './_error-handler';

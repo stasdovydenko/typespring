@@ -1,6 +1,7 @@
 {
     "compilerOptions": {
-        "outDir": "lib",
+        "module": "commonjs",
+        "outDir": "dist",
         "sourceMap": true,
         "declaration": true,
         "moduleResolution": "node",
@@ -13,6 +14,6 @@
         "lib": [
             "es2017",
             "dom"
-        ],
-    }
+        ]
+    },
 }
