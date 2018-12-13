@@ -2,7 +2,7 @@
 /// <reference types="node" />
 import 'reflect-metadata';
 interface IServerOptions {
-    port: number;
+    port: number | string;
     cors?: boolean;
     services?: any[];
     controllers?: any[];

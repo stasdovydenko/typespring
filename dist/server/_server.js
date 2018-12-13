@@ -18,6 +18,7 @@ var http_1 = require("http");
 var fileUpload = require("express-fileupload");
 require("reflect-metadata");
 var _injector_1 = require("../di/_injector");
+var services_1 = require("../services");
 function Server(options) {
     return function (constructor) {
         return /** @class */ (function (_super) {
@@ -46,7 +47,9 @@ function Server(options) {
                 this.app.use(fileUpload({ preserveExtension: true }));
                 this.initControllers(options.controllers);
                 this.server.listen(options.port, function () {
-                    console.log("Node Express server listening on http://localhost:" + options.port);
+                    var loggerFactory = new services_1.LoggerFactory();
+                    var logger = loggerFactory.getLogger('SYSTEM');
+                    logger.info("Node Express server listening on http://localhost:" + options.port);
                 });
             };
             class_1.prototype.initControllers = function (controllers) {

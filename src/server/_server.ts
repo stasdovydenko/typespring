@@ -6,9 +6,10 @@ import { createServer } from 'http';
 import * as fileUpload from 'express-fileupload';
 import 'reflect-metadata';
 import { Injector } from '../di/_injector';
+import { LoggerFactory } from '../services';
 
 interface IServerOptions {
-    port: number
+    port: number | string;
     cors?: boolean;
     services?: any[];
     controllers?: any[];
@@ -20,6 +21,7 @@ export function Server(options: IServerOptions) {
         return class extends constructor {
             app = express();
             server = createServer(this.app);
+
             constructor(...args: any[]) {
                 super(...args);
                 this.run();
@@ -35,11 +37,13 @@ export function Server(options: IServerOptions) {
                 if (options.cors) {
                     this.app.use(cors());
                 }
-                this.app.use(fileUpload({ preserveExtension: true }));
+                this.app.use(fileUpload({preserveExtension: true}));
                 this.initControllers(options.controllers);
 
                 this.server.listen(options.port, () => {
-                    console.log(`Node Express server listening on http://localhost:${options.port}`);
+                    const loggerFactory = new LoggerFactory();
+                    const logger = loggerFactory.getLogger('SYSTEM');
+                    logger.info(`Node Express server listening on http://localhost:${options.port}`);
                 });
             }
 
